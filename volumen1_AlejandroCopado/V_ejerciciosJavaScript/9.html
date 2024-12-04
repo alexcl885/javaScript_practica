@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texto Cifrado:</title>
+
+</head>
+
+<body>
+    <h2>Pon una palabra para cifrarlo:</h2><br>
+    <textarea name="texto" id="textoEscrito" placeholder="Escribe una palabra"></textarea>
+    <br>
+    <h2>Cuantas posiciones:</h2>
+    <br>
+    <input type="number" id="posicionamiento"><br>
+    <br>
+    <input type="button" value="cifrar" onclick="cifrarTexto()">
+    <br>
+    <br>
+    <textarea name="textoCifrado" id="textoCifrado" ></textarea>
+
+    <script>
+        function cifrarTexto() {
+            let textoEscrito = document.getElementById("textoEscrito").value;
+            let posicionamiento = document.getElementById("posicionamiento").value;
+            let textoCifrado = "";
+
+            for (let i = 0; i < textoEscrito.length; i++) {
+                let palabra = textoEscrito.charCodeAt(i);
+                if (palabra >= 65 && palabra <= 90) {
+                    textoCifrado += String.fromCharCode(((palabra - 65 + posicionamiento) % 26) +
+                        65);
+                } else if (palabra >= 97 && palabra <= 122) {
+                    textoCifrado += String.fromCharCode(((palabra - 97 + posicionamiento) % 26) +
+                        97);
+                } else {
+                    textoCifrado += textoEscrito[i];
+                }
+            }
+            document.getElementById('textoCifrado').value = textoCifrado;
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

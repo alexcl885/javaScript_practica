@@ -1,0 +1,41 @@
+{
+    "videojuegos":[
+        {
+            "id": 1,
+            "id_categoria": 1,
+            "name": "Miguelon FVF",
+            "price": 1500,
+            "description": "This is a popular videogame."
+        },
+        {
+            "id": 2,
+            "id_categoria": 2,
+            "name": "Minecraft",
+            "price": 25,
+            "description": "minecraft"
+        },
+        {
+            "id": 3,
+            "id_categoria": 2,
+            "name": "LOL",
+            "price": 0,
+            "description": "League of Legends"
+        }
+
+    ],
+    "categorias":[
+        {
+            "id": 1,
+            "name": "Misterio",
+            "description": "que nerrrrrviosss"
+        },
+        {
+            "id": 2,
+            "name": "Lucha",
+            "description": "tu verassssssssssssss"
+        }
+    ]
+
+
+
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen realizado por Luis</title>
+    <style>
+        #container{
+            border: 2px solid black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>LISTA DE NIÑOS:</h2>
+    <div id="container"></div>
+
+
+    <script>
+        let dinero=0;
+        /*
+            ESTE CODIGO VALE PERO NO SE PODRIA DEVOLVER EL DINERO
+        const calcularDinero = () => {
+            let dineroTotal = 0;
+            return fetch('http://localhost:3000/ninos')
+                .then(response => response.json())
+                .then(ninos => {
+                    console.log(ninos);
+                    ninos.forEach(nino => {
+                        let id = nino.id;
+                        console.log("id" + id);
+                        fetch(`http://localhost:3000/deseos/${id}`)
+                            .then(response => response.json())
+                            .then(deseo => {
+                                console.log("deseo-", deseo);
+                                for (let index = 0; index < deseo.regalos.length; index++) {
+                                    let id_deseo = deseo.regalos[index];
+                                    console.log("El index" + id);
+
+                                    fetch(`http://localhost:3000/regalos/${id_deseo}`)
+                                        .then(response => response.json())
+                                        .then(regalo => {
+                                            dineroTotal += regalo.precio;
+
+                                        })
+                                }
+
+                                return dineroTotal;
+                            })
+
+                    });
+
+
+                })
+
+
+        }*/
+
+        const calcularDineroAsync = async () => {
+            let dineroTotal = 0;
+            const response = await fetch('http://localhost:3000/ninos')
+            const ninos = await response.json();
+            console.log(ninos);
+            for (const nino of ninos) {
+                if (nino.comportamiento === "bueno"){
+                    let id = nino.id;
+                    console.log("id" + id);
+                    const response = await fetch(`http://localhost:3000/deseos/${id}`)
+                    const deseo = await response.json();
+                    console.log("deseo-", deseo);
+                    let response2;
+                    for (let index = 0; index < deseo.regalos.length; index++) {
+                        let id_deseo = deseo.regalos[index];
+                        console.log("El index" + id);
+    
+                        response2 = await fetch(`http://localhost:3000/regalos/${id_deseo}`)
+                        regalo = await response2.json();
+    
+                        dineroTotal += regalo.precio;
+                    }
+                }
+            }
+            return dineroTotal;
+        }
+
+        
+        calcularDineroAsync()
+        .then((total) => { 
+            console.log("el total es: ", total) 
+            
+            const money = document.createElement("p");
+            money.innerHTML = `<p> El total de todos los ninos son ->${total}</p>`;
+            document.body.appendChild(money);
+        });
+
+        const div = document.getElementById("container")
+
+
+        const listaNinosLista = async () => {
+            const data = await fetch('http://localhost:3000/ninos');
+            const ninos = await data.json();
+
+            for (let nino of ninos) {
+
+                let nombre = document.createElement("h2");
+                nombre.innerText = nino.nombre;
+                div.appendChild(nombre);
+            
+
+                let id = nino.id;
+                console.log("id" + id);
+                const response = await fetch(`http://localhost:3000/deseos/${id}`)
+                const deseo = await response.json();
+                console.log("deseo-", deseo);
+                let response2;
+                for (let index = 0; index < deseo.regalos.length; index++) {
+                    let id_deseo = deseo.regalos[index];
+                    console.log("El index" + id);
+
+                    response2 = await fetch(`http://localhost:3000/regalos/${id_deseo}`)
+                    regalo = await response2.json();
+
+                    let re = document.createElement("p");
+                    re.innerText = regalo.nombre;
+                    div.appendChild(re);
+
+                    let boton = document.createElement("button");
+                    boton.innerText = "Eliminar item"
+                    boton.addEventListener("click", ()=>{ /*cuando le damos al boton automaticamente se borrara el regalo y el boton*/
+                        re.remove();
+                        boton.remove();
+
+                    });
+                    
+                    div.appendChild(boton);
+
+                   
+                }
+                
+                
+            }
+        }
+        
+        listaNinosLista();
+
+        
+
+
+
+
+        
+
+    </script>
+
+</body>
+
+</html>

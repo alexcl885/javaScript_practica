@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editor Markdown</title>
+</head>
+
+<body>
+    <p>Pon un texto en markdown y se renderizara => </p>
+    <textarea id="textoToMarkdown" placeholder="Escribe texto..."
+        style="width: 400px; height: 200px;"></textarea> <br>
+    <button onclick="renderizador()">Renderizar</button>
+
+    <div id="markdownRenderizado"></div>
+
+    <script>
+        function renderizador() {
+            const textArea = document.getElementById('textoToMarkdown').value;
+            const lines = textArea.split('\n');
+            const renderizadoDiv = document.getElementById('markdownRenderizado');
+            renderizadoDiv.innerHTML = '';
+
+            lines.forEach(linea => {
+                let element;
+                if (linea.startsWith('### ')) {
+                    element = document.createElement('h3');
+                    element.textContent = linea.slice(4);
+                } else if (linea.startsWith('## ')) {
+                    element = document.createElement('h2');
+                    element.textContent = linea.slice(3);
+                } else if (linea.startsWith('# ')) {
+                    element = document.createElement('h1');
+                    element.textContent = linea.slice(2);
+                } else if (linea.startsWith('**') && linea.endsWith('**')) {
+                    element = document.createElement('strong');
+                    element.textContent = linea.slice(2, -2);
+                } else if (linea.startsWith('*') && linea.endsWith('*')) {
+                    element = document.createElement('em');
+                    element.textContent = linea.slice(1, -1);
+                } else {
+                    element = document.createElement('p');
+                    element.textContent = linea;
+                }
+                renderizadoDiv.appendChild(element);
+            });
+        }
+    </script>
+</body>
+
+</html>

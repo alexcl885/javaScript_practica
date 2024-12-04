@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--3. Crea una página web para escribir la carta a los reyes magos.
+a. El usuario puede escribir el regalo que desea pedir en una caja de texto. Cuando pulsa el
+botón “Pedir” se añade a la lista.
+b. Crea un botón para borrar la lista completa.
+c. Muestra un mensaje que indique el total de regalos pedidos en la lista.
+d. Cada elemento de la lista tiene un botón o enlace que al pulsarlo lo eliminará-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <p>REGALO</p>
+        <input type="text" name="regalo" id="regalo"><br>
+        <input type="button" value="pedir" onclick="addToList()">
+        <input type="button" value="borrarLista" onclick="deleteList()">
+        <input type="button" value="verRegalos" onclick="numberOfGift()">
+        <p id="gift"></p>
+        
+
+    </div>
+    <script>
+        const lista = [];
+        
+        //metodo que añade un regalo a una lista
+        function addToList() {
+            const text = document.getElementById('regalo');
+            lista.push(text);
+            console.log("Texto introducido!");
+        }
+        function deleteList(params) {
+            lista = [];
+        }
+        function numberOfGift(params) {
+            
+        }
+    </script>
+
+
+</body>
+
+</html>

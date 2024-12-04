@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6-Generador de contrasenas</title>
+</head>
+<body>
+    <p>Generador de contraseñas</p>
+    <input type="number" id="longitud" placeholder="Tamaño de la contraseña">
+    <button onclick="obtenerPasswdord()">OBTENER PASSWORD</button>
+    <p>PASSWORD:</p>
+    <p id="passwdord"></p>
+    <script>
+        function obtenerPasswdord(){ //funcion que genera una contrasena
+            let passwdord = "" 
+            let letras = "abcdefghijklmopqrstuwyzABCDEFGHIJKLMNOPRSTUWYZ0123456789!@#$%^&*()'"
+            let long = parseInt(document.getElementById("longitud").value); //cogemos el numero de caracteres que quiera el usuario
+
+            for (let i = 0; i < long; i++){
+                passwdord += letras.charAt(Math.floor(Math.random()* letras.length))
+            }
+
+            document.getElementById("passwdord").innerText = passwdord //insetamos en el html la contrasena
+        }
+    </script>
+    
+</body>
+</html>

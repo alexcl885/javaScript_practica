@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 del examen</title>
+</head>
+<body>
+    <input type="text" name="texto" id="texto"> <br>
+    <input type="button" value="pedir" onclick="addRegalo()"> <br> 
+    <input type="button" value="borrar_lista" onclick="delRegalo()"><br>
+    <input type="button" value="listar_regalos" onclick="totalRegalos()">
+
+    <p id="listaRegalos"></p>
+
+    <script>
+        let lista_regalos = [];
+        /*PARA AÑADIR UN REGALO A LA LISTA*/
+        const addRegalo = () =>{
+            let text = document.getElementById("texto");
+            lista_regalos.push(text.value);
+            console.log(lista_regalos);
+        }
+        /*PARA BORRAR LA LISTA DE REGALOS*/
+        const delRegalo = () => {
+            lista_regalos = [];
+            console.log("Lista borrada");
+            console.log(lista_regalos);        
+        }
+
+        const totalRegalos = () => {
+            const regalos_texto = lista_regalos.forEach((regalo)=> console.log(regalo));
+            let p = document.getElementById("listaRegalos");
+            p.innerHTML = `<p>Lista regalos: ${lista_regalos}</p>`
+            console.log("REALIZADO");
+            
+        }
+        /*ME FALTA EL APARTADO D) QUE A SABER COMO SE HACE*/
+
+        
+
+
+    </script>
+    
+</body>
+</html>

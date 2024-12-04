@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Busca el libro </h2>
+
+    <input type="text" name="libro" id="libros">
+    <input type="button" value="Buscar" onclick="libro()">
+
+    <script>
+        const libro = () => {
+            const texto = document.getElementById("libros").value; 
+
+            fetch('https://openlibrary.org/search.json?q=' + texto)
+                .then(response => response.json())
+                .then(libros => {
+                    const libro_filtrado = libros.docs.filter((libro) => libro.title.toLowerCase().includes(texto.toLowerCase())); // Cambié la comparación para que sea insensible a mayúsculas
+                    console.log(libro_filtrado);
+
+                    // Verificamos si encontramos libros con ISBN
+                    let isbn = null;
+                    for (let i = 0; i < libro_filtrado.length; i++) {
+                        if (libro_filtrado[i].isbn && libro_filtrado[i].isbn.length > 0) {
+                            isbn = libro_filtrado[i].isbn[0]; // Usamos el primer ISBN disponible
+                            break;
+                        }
+                    }
+
+                    // Si encontramos un ISBN, tratamos de obtener la portada
+                    if (isbn) {
+                        return fetch(`https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`)
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.url; // Retorna la URL de la imagen
+                                } else {
+                                    throw new Error('No se pudo obtener la imagen');
+                                }
+                            });
+                    } else {
+                        throw new Error('No se encontró ISBN para el libro');
+                    }
+                })
+                .then(imagenUrl => {
+                    console.log("Imagen URL: " + imagenUrl);
+                    // Aquí podrías mostrar la imagen en la página si lo deseas
+                    let img = document.createElement('img');
+                    img.src = imagenUrl;
+                    document.body.appendChild(img); // Agregar la imagen al cuerpo del documento
+                })
+                .catch(error => console.log(error));
+        }
+    </script>
+</body>
+
+</html>

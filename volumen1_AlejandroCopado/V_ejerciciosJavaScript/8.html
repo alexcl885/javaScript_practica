@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar formulario</title>
+</head>
+
+<body>
+    <h1>Name:</h1>
+    <input type="text" name="name" id="name" placeholder="please insert your name">
+    <h1>Email:</h1>
+    <input type="text" name="email" id="email" placeholder="please insert your email">
+    <h1>Age:</h1>
+    <input type="text" name="age" id="age" placeholder="please insert your age">
+
+    <input type="button" value="validar" onclick="validate()">
+    <p id="result"></p>
+    <script>
+        function validate() {
+            //Recogemos los valores del html para js
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let age = parseInt(document.getElementById("age").value);
+            let result = document.getElementById("result");
+
+            if (name.length <= 3) {
+                result.innerText("Nombre incorrecto, vuelve a poner un nombre con mas de 3 caracteres")
+                return false;
+            }
+            if (age <= 0 || age > 120) {
+                result.innerText("Edad comprendida incorrecta!");
+                return false;
+            }
+            //expresion regular
+            const regexCorreo = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+            if (!regexCorreo.test(email)) {
+                result.innerText = "El correo electrónico no es válido.";
+                return false;
+            }
+            result.innerText ="correcto!";
+            return true;
+        }
+
+    </script>
+
+
+</body>
+
+</html>

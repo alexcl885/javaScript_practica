@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio programado por Luis</title>
+</head>
+<body>
+    <div style="margin-left: 300px;">
+        <input type="text" name="buscador" id="texto">
+        <input type="button" value="buscar" id="buscar">
+        
+        <input type="button" value="ver categoria" id="categoria">
+    </div>
+
+    <script>
+        
+        const llamadaVideojuegos = () => {
+            fetch('http://localhost:3000/videojuegos')
+            .then(response => response.json())
+            .then(videjuegos => {
+                videjuegos.forEach(juego => {
+
+                    const id_html = document.createElement("h3");
+                    id_html.innerText = juego.id;
+
+                    const name_html = document.createElement("p");
+                    name_html.innerText = juego.name;
+
+                    const descripcion_html_juego = document.createElement("p");
+                    descripcion_html_juego.innerText = juego.description;
+
+                
+                    document.body.appendChild(id_html)
+                    document.body.appendChild(name_html)
+                    document.body.appendChild(descripcion_html_juego)
+                });
+            })
+        }
+        let id_cate;
+        /*Con este metodo buscamos un videojuego en concreto*/
+        const buscarUnJuego = () =>{
+            fetch(`http://localhost:3000/videojuegos`)
+            .then(response => response.json())
+            .then(videjuegos => {
+
+                let texto = document.getElementById("texto").value.trim();
+                videjuegos.forEach(juego => {
+        
+                    if (juego.name === texto){
+                        console.log(juego);
+                        
+                        id_cate = juego.id_categoria;
+
+                        const id_html_juego = document.createElement("h3");
+                        id_html_juego.innerText = juego.id;
+
+                        const name_html_juego = document.createElement("p");
+                        name_html_juego.innerText = juego.name;
+
+                        const descripcion_html_juego = document.createElement("p");
+                        descripcion_html_juego.innerText = juego.description;
+
+
+                        fetch('http://localhost:3000/categorias')
+                        .then(response => response.json())
+                        .then(categorias => {
+                            categorias.forEach(categoria => {
+                                if (categoria.id == id_cate){
+                                    const id_html_cat = document.createElement("h3");
+                                    id_html_cat.innerText = categoria.id;
+
+                                    const name_html_cat = document.createElement("p");
+                                    name_html_cat.innerText = categoria.name;
+
+                                    const descripcion_html_cat = document.createElement("p");
+                                    descripcion_html_cat.innerText = categoria.description;
+
+                                    document.body.appendChild(id_html_cat)
+                                    document.body.appendChild(name_html_cat)
+                                    document.body.appendChild(descripcion_html_cat)
+                                }
+                            });
+                        })
+                        document.body.appendChild(id_html_juego)
+                        document.body.appendChild(name_html_juego)
+                        document.body.appendChild(descripcion_html_juego)                    
+                    }
+                })
+
+
+            })
+        };
+        
+        /*const buscarCategoria = () => {
+            fetch('http://localhost:3000/categorias')
+            .then(response => response.json())
+            .then(categorias => {
+                categorias.forEach(categoria => {
+                    if (categoria.id == id_cate){
+                        const id_html_cat = document.createElement("h3");
+                        id_html_cat.innerText = categoria.id;
+
+                        const name_html_cat = document.createElement("p");
+                        name_html_cat.innerText = categoria.name;
+
+                        const descripcion_html_cat = document.createElement("p");
+                        descripcion_html_cat.innerText = categoria.description;
+
+                        document.body.appendChild(id_html_cat)
+                        document.body.appendChild(name_html_cat)
+                        document.body.appendChild(descripcion_html_cat)
+                    }
+                });
+            })
+        }*/
+ 
+        const buscar = () => {
+            let text = document.getElementById("texto").value.toLowerCase().trim();
+            if (text == ""){
+                llamadaVideojuegos();
+            }
+            else {
+                buscarUnJuego();
+            }
+        }
+        /*
+            Cuando se le da a click a buscar si esta vacio te mostrara lo buscado
+        */
+        document.getElementById("buscar").addEventListener("click", buscar);
+
+        document.getElementById("categoria").addEventListener("click", buscarCategoria );
+
+        
+
+    </script>
+</body>
+</html>
