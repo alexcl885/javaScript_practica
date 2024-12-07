@@ -1,0 +1,151 @@
+{
+    "books": [
+      {
+        "id": 1,
+        "title": "Cien Años de Soledad",
+        "authorId": 1,
+        "category": "Ficción",
+        "price": 19.99,
+        "stock": 45
+      },
+      {
+        "id": 2,
+        "title": "1984",
+        "authorId": 2,
+        "category": "Ciencia Ficción",
+        "price": 14.99,
+        "stock": 30
+      },
+      {
+        "id": 3,
+        "title": "Don Quijote de la Mancha",
+        "authorId": 3,
+        "category": "Clásico",
+        "price": 25.50,
+        "stock": 12
+      },
+      {
+        "id": 4,
+        "title": "Sapiens: De animales a dioses",
+        "authorId": 4,
+        "category": "Historia",
+        "price": 22.00,
+        "stock": 8
+      },
+      {
+        "id": 5,
+        "title": "El Principito",
+        "authorId": 5,
+        "category": "Infantil",
+        "price": 9.99,
+        "stock": 60
+      }
+    ],
+    "authors": [
+      {
+        "id": 1,
+        "name": "Gabriel García Márquez",
+        "country": "Colombia",
+        "birthYear": 1927
+      },
+      {
+        "id": 2,
+        "name": "George Orwell",
+        "country": "Reino Unido",
+        "birthYear": 1903
+      },
+      {
+        "id": 3,
+        "name": "Miguel de Cervantes",
+        "country": "España",
+        "birthYear": 1547
+      },
+      {
+        "id": 4,
+        "name": "Yuval Noah Harari",
+        "country": "Israel",
+        "birthYear": 1976
+      },
+      {
+        "id": 5,
+        "name": "Antoine de Saint-Exupéry",
+        "country": "Francia",
+        "birthYear": 1900
+      }
+    ],
+    "users": [
+      {
+        "id": 1,
+        "name": "Juan Pérez",
+        "email": "juan.perez@example.com",
+        "role": "admin",
+        "purchases": [1, 3]
+      },
+      {
+        "id": 2,
+        "name": "Ana Gómez",
+        "email": "ana.gomez@example.com",
+        "role": "user",
+        "purchases": [2]
+      },
+      {
+        "id": 3,
+        "name": "Carlos Ruiz",
+        "email": "carlos.ruiz@example.com",
+        "role": "user",
+        "purchases": []
+      }
+    ],
+    "orders": [
+      {
+        "id": 1,
+        "userId": 1,
+        "bookId": 1,
+        "quantity": 2,
+        "totalPrice": 39.98,
+        "status": "completed",
+        "orderDate": "2024-12-01"
+      },
+      {
+        "id": 2,
+        "userId": 2,
+        "bookId": 2,
+        "quantity": 1,
+        "totalPrice": 14.99,
+        "status": "completed",
+        "orderDate": "2024-12-02"
+      },
+      {
+        "id": 3,
+        "userId": 1,
+        "bookId": 4,
+        "quantity": 1,
+        "totalPrice": 22.00,
+        "status": "pending",
+        "orderDate": "2024-12-03"
+      }
+    ],
+    "categories": [
+      {
+        "id": 1,
+        "name": "Ficción"
+      },
+      {
+        "id": 2,
+        "name": "Ciencia Ficción"
+      },
+      {
+        "id": 3,
+        "name": "Clásico"
+      },
+      {
+        "id": 4,
+        "name": "Historia"
+      },
+      {
+        "id": 5,
+        "name": "Infantil"
+      }
+    ]
+  }
+  
