@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio propuesto por mi</title>
+</head>
+<body>
+    <h3>Libros:</h3>
+    <input type="text" name="libro" id="libro">
+    <input type="button" value="Buscar" id="buscar">
+    <div id="container">
+        
+    </div>
+    <script>
+        const libros = async () => {
+            let total = 0;
+            let libro_texto = document.getElementById("libro").value;
+            try {
+                let data = await fetch('http://localhost:3000/books');
+                let libros = await data.json();
+                for (const libro of libros) {  
+                    
+                    console.log(libro);
+                    let titulo = document.createElement("h3");
+                    titulo.innerText = libro.title;
+
+                    let categoria = document.createElement("p");
+                    categoria.innerText = libro.category;
+
+                    let precio = document.createElement("p");
+                    precio.innerText = libro.price;
+
+                    total += libro.price;
+
+                    container.appendChild(titulo);
+                    container.appendChild(categoria);
+                    container.appendChild(precio);
+                    
+                }
+                let dinero = document.createElement("h3");
+                dinero.innerText = `EL total es => ${total}`
+                container.appendChild(dinero);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        const buscarUnLibro = async ()  => {
+            let libro_texto = document.getElementById("libro").value;
+            try {
+                let data = await fetch('http://localhost:3000/books');
+                let libros = await data.json();
+                for (const libro of libros) {
+                    if (libro.title == libro_texto){
+                        console.log(libro);
+                        let titulo = document.createElement("h3");
+                        titulo.innerText = libro.title;
+
+                        let categoria = document.createElement("p");
+                        categoria.innerText = libro.category;
+
+                        let precio = document.createElement("p");
+                        precio.innerText = libro.price;
+
+                                        
+
+                        container.appendChild(titulo);
+                        container.appendChild(categoria);
+                        container.appendChild(precio);
+                    }
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        /**
+         * Si el texto se encuentra en blanco buscara todos los libros
+         * pero si escribe un nombre busca ese libro en concreto
+        */
+        const buscar = () => {
+            let libro_texto = document.getElementById("libro").value;
+            if (libro_texto == ""){
+                libros()
+            }else{
+                buscarUnLibro();
+            }
+        }
+
+        let boton = document.getElementById("buscar");
+        boton.addEventListener("click", buscar);
+        
+    </script>
+</body>
+</html>

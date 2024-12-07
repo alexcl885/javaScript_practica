@@ -10,7 +10,7 @@ d. Llama a la función en el ámbito global e imprime el resultado en consola.
 e. Si ocurre un error imprimelo en consola.
  */
 
-const arrow = async (edad= 18) => {
+const arrow = async (edad = 18) => {
     try {
         const respuesta = await fetch('https://randomuser.me/api/?results=100');
         const usuarios = await respuesta.json();

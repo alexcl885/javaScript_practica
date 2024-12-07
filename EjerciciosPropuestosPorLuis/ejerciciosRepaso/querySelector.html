@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ejemplo de querySelector</title>
+  <style>
+    .highlight {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1 id="titulo">Hola Mundo</h1>
+  <p class="descripcion">Este es un párrafo con una clase.</p>
+  <p>Otro párrafo sin clase.</p>
+  <button id="cambiar">Cambiar estilo</button>
+
+  <script>
+    // Seleccionamos el botón
+    const boton = document.querySelector('#cambiar');
+    
+    // Agregamos un evento de clic
+    boton.addEventListener('click', () => {
+      // Seleccionamos el primer elemento con la clase 'descripcion'
+      const parrafo = document.querySelector('.descripcion');
+      
+      // Cambiamos su estilo añadiendo una clase
+      parrafo.classList.toggle('highlight');
+    });
+
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio para repasar el examen</title>
+</head>
+<body> 
+    <div id="container">
+        <input type="button" value="atras" onclick="anteriorImagen()">
+        <img src="" alt="1" id="imagenUna">
+        <img src="" alt="2" id="imagenDos">
+        <input type="button" value="adelante" onclick="pasarImagen()">
+    </div>
+
+    <script>
+        const array_imagenes = []
+        for (let i = 0; i < 20; i++) {
+            array_imagenes.push(`https://randomfox.ca/images/${i}.jpg`);
+        }
+        console.log(array_imagenes);
+        let posicion =1;
+        const mostrarImagenes = () => {
+            document.getElementById("imagenUna").src = array_imagenes[posicion];
+            document.getElementById("imagenDos").src = array_imagenes[posicion + 1];
+        }
+        const pasarImagen = () => {
+            posicion++;
+            mostrarImagenes();
+        };
+
+        const anteriorImagen = () => {
+            posicion--;
+            mostrarImagenes();
+        };
+
+        
+
+    </script>
+    
+</body>
+</html>
