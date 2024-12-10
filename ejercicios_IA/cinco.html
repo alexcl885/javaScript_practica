@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio que me ha recomendado realizar la IA</title>
+</head>
+<body>
+    Buscar: <input type="text" id="caja_texto">
+    <input type="button" value="buscar" id="bt_buscar">
+    <div id="container">
+
+    </div>
+    <script>
+        const generadorDomTitleBody = async () => {
+            const responsePosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+            const posts = await responsePosts.json();
+                
+            for (const post of posts) {
+                console.log(post);
+                const titulo = document.createElement("h3");
+                titulo.innerText = post.title;
+
+                const body = document.createElement("p");
+                body.innerText = post.body;
+
+                document.container.appendChild(titulo);
+                document.container.appendChild(body);  
+                
+                const boton = document.createElement("button");
+                boton.innerText = "eliminar"
+                document.body.appendChild(boton);
+                boton.addEventListener("click", () => {
+                    body.remove();
+                    boton.remove();
+
+                })
+            }
+        };
+        const generadorUnPost = async () => {
+            const responsePosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+            const posts = await responsePosts.json();
+
+            const buscar = document.getElementById("caja_texto");
+            
+            
+                
+            for (const post of posts) {
+                               
+                const title = post.title;
+                const arrayTitle = title.split(" ");
+                arrayTitle.forEach(element => {
+                    console.log(post);
+                    
+                    if (buscar.value === element){
+                        console.log(post);
+                        const titulo = document.createElement("h3");
+                        titulo.innerText = post.title;
+        
+                        const body = document.createElement("p");
+                        body.innerText = post.body;
+        
+                        document.body.appendChild(titulo);
+                        document.body.appendChild(body);  
+                        
+                        const boton = document.createElement("button");
+                        boton.innerText = "eliminar"
+                        document.body.appendChild(boton);
+                        boton.addEventListener("click", () => {
+                            body.remove();
+                            boton.remove();
+        
+                        })
+                    }else{
+
+                    }
+                    
+                });
+            }
+        };
+
+        const buscador = () => {
+            const buscar = document.getElementById("caja_texto");
+            if (buscar === ""){
+                generadorDomTitleBody();
+            }
+            else {
+                generadorUnPost();
+            }
+        }
+        
+        const botonBuscar = document.getElementById("bt_buscar")
+        botonBuscar.addEventListener("click", buscador)
+
+        
+    </script>
+    
+</body>
+</html>
