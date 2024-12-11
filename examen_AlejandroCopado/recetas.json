@@ -1,0 +1,176 @@
+{
+    "recetas": [
+      {
+        "id": 1,
+        "nombre": "Spaghetti Bolognese",
+        "descripcion": "Clásico plato italiano de pasta con salsa de tomate y carne.",
+        "categoriaId": 1,
+        "precio": 12.99,
+        "ingredientes": [
+          { "ingredienteId": 1, "cantidad": "200g" },
+          { "ingredienteId": 2, "cantidad": "150g" },
+          { "ingredienteId": 3, "cantidad": "2 unidades" },
+          { "ingredienteId": 4, "cantidad": "1 unidad" },
+          { "ingredienteId": 5, "cantidad": "2 dientes" },
+          { "ingredienteId": 6, "cantidad": "2 cucharadas" }
+        ]
+      },
+      {
+        "id": 2,
+        "nombre": "Ensalada César",
+        "descripcion": "Ensalada fresca con pollo, parmesano y aderezo César.",
+        "categoriaId": 2,
+        "precio": 9.99,
+        "ingredientes": [
+          { "ingredienteId": 7, "cantidad": "1 unidad" },
+          { "ingredienteId": 8, "cantidad": "100g" },
+          { "ingredienteId": 9, "cantidad": "50g" },
+          { "ingredienteId": 10, "cantidad": "150g" },
+          { "ingredienteId": 11, "cantidad": "3 cucharadas" }
+        ]
+      },
+      {
+        "id": 3,
+        "nombre": "Sopa de Lentejas",
+        "descripcion": "Sopa reconfortante con lentejas, verduras y especias.",
+        "categoriaId": 4,
+        "precio": 7.99,
+        "ingredientes": [
+          { "ingredienteId": 12, "cantidad": "200g" },
+          { "ingredienteId": 3, "cantidad": "1 unidad" },
+          { "ingredienteId": 4, "cantidad": "1 unidad" },
+          { "ingredienteId": 5, "cantidad": "2 dientes" },
+          { "ingredienteId": 13, "cantidad": "1 cucharada" }
+        ]
+      },
+      {
+        "id": 4,
+        "nombre": "Pizza Margherita",
+        "descripcion": "Pizza tradicional con tomate, albahaca y mozzarella.",
+        "categoriaId": 1,
+        "precio": 14.99,
+        "ingredientes": [
+          { "ingredienteId": 14, "cantidad": "300g" },
+          { "ingredienteId": 3, "cantidad": "2 unidades" },
+          { "ingredienteId": 15, "cantidad": "200g" },
+          { "ingredienteId": 16, "cantidad": "5 hojas" }
+        ]
+      },
+      {
+        "id": 5,
+        "nombre": "Tiramisú",
+        "descripcion": "Postre italiano de café, mascarpone y cacao.",
+        "categoriaId": 3,
+        "precio": 6.99,
+        "ingredientes": [
+          { "ingredienteId": 17, "cantidad": "100g" },
+          { "ingredienteId": 18, "cantidad": "250g" },
+          { "ingredienteId": 19, "cantidad": "100ml" },
+          { "ingredienteId": 20, "cantidad": "50g" }
+        ]
+      },
+      {
+        "id": 6,
+        "nombre": "Pollo al Curry",
+        "descripcion": "Plato asiático con pollo, especias y leche de coco.",
+        "categoriaId": 5,
+        "precio": 13.99,
+        "ingredientes": [
+          { "ingredienteId": 10, "cantidad": "200g" },
+          { "ingredienteId": 21, "cantidad": "1 cucharada" },
+          { "ingredienteId": 22, "cantidad": "200ml" },
+          { "ingredienteId": 4, "cantidad": "1 unidad" }
+        ]
+      },
+      {
+        "id": 7,
+        "nombre": "Hamburguesa Clásica",
+        "descripcion": "Hamburguesa con carne, queso, lechuga y tomate.",
+        "categoriaId": 6,
+        "precio": 11.99,
+        "ingredientes": [
+          { "ingredienteId": 23, "cantidad": "1 unidad" },
+          { "ingredienteId": 24, "cantidad": "150g" },
+          { "ingredienteId": 3, "cantidad": "2 rodajas" },
+          { "ingredienteId": 7, "cantidad": "1 hoja" },
+          { "ingredienteId": 9, "cantidad": "1 rodaja" }
+        ]
+      },
+      {
+        "id": 8,
+        "nombre": "Ramen",
+        "descripcion": "Sopa japonesa con fideos, cerdo y huevo.",
+        "categoriaId": 4,
+        "precio": 14.49,
+        "ingredientes": [
+          { "ingredienteId": 25, "cantidad": "200g" },
+          { "ingredienteId": 26, "cantidad": "100g" },
+          { "ingredienteId": 27, "cantidad": "1 huevo" },
+          { "ingredienteId": 28, "cantidad": "2 tazas" }
+        ]
+      },
+      {
+        "id": 9,
+        "nombre": "Tacos al Pastor",
+        "descripcion": "Tacos mexicanos con carne de cerdo y piña.",
+        "categoriaId": 7,
+        "precio": 8.99,
+        "ingredientes": [
+          { "ingredienteId": 29, "cantidad": "3 tortillas" },
+          { "ingredienteId": 30, "cantidad": "150g" },
+          { "ingredienteId": 31, "cantidad": "50g" },
+          { "ingredienteId": 32, "cantidad": "1 rodaja" }
+        ]
+      },
+      {
+        "id": 10,
+        "nombre": "Cheesecake",
+        "descripcion": "Pastel cremoso de queso con base de galleta.",
+        "categoriaId": 3,
+        "precio": 7.99,
+        "ingredientes": [
+          { "ingredienteId": 18, "cantidad": "300g" },
+          { "ingredienteId": 33, "cantidad": "150g" },
+          { "ingredienteId": 34, "cantidad": "50g" }
+        ]
+      }
+    ],
+    "ingredientes": [
+      { "id": 1, "nombre": "Spaghetti" },
+      { "id": 2, "nombre": "Carne molida" },
+      { "id": 3, "nombre": "Tomate" },
+      { "id": 4, "nombre": "Cebolla" },
+      { "id": 5, "nombre": "Ajo" },
+      { "id": 6, "nombre": "Aceite de oliva" },
+      { "id": 7, "nombre": "Lechuga romana" },
+      { "id": 8, "nombre": "Crutones" },
+      { "id": 9, "nombre": "Queso parmesano" },
+      { "id": 10, "nombre": "Pollo" },
+      { "id": 11, "nombre": "Aderezo César" },
+      { "id": 12, "nombre": "Lentejas" },
+      { "id": 13, "nombre": "Pimentón" },
+      { "id": 14, "nombre": "Masa para pizza" },
+      { "id": 15, "nombre": "Mozzarella" },
+      { "id": 16, "nombre": "Albahaca" },
+      { "id": 17, "nombre": "Bizcocho" },
+      { "id": 18, "nombre": "Queso mascarpone" },
+      { "id": 19, "nombre": "Café" },
+      { "id": 20, "nombre": "Cacao en polvo" },
+      { "id": 21, "nombre": "Curry en polvo" },
+      { "id": 22, "nombre": "Leche de coco" },
+      { "id": 23, "nombre": "Pan de hamburguesa" },
+      { "id": 24, "nombre": "Carne de hamburguesa" },
+      { "id": 25, "nombre": "Fideos de ramen" },
+      { "id": 26, "nombre": "Cerdo" },
+      { "id": 27, "nombre": "Huevo" },
+      { "id": 28, "nombre": "Caldo de pollo" },
+      { "id": 29, "nombre": "Tortilla de maíz" },
+      { "id": 30, "nombre": "Cerdo al pastor" },
+      { "id": 31, "nombre": "Cilantro" },
+      { "id": 32, "nombre": "Piña" },
+      { "id": 33, "nombre": "Galletas trituradas" },
+      { "id": 34, "nombre": "Azúcar" }
+    ]
+  }
+  
+  

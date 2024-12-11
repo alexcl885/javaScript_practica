@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3 del examen</title>
+</head>
+<body>
+    <input type="text" id="cajaTexto">
+    <input type="button" id="insertarTablas" value="insertar">
+
+    <script>
+        /*TE GENERA UN DESPLEGABLE DEL 1 AL 20*/
+        const generarDesplegable = () => {
+            let desplegable = document.createElement("select")
+            desplegable.id = "desplegable"
+            desplegable.innerText = "desplegable";
+            document.body.appendChild(desplegable)
+            for (let i = 1; i < 21; i++) {
+                desplegable.innerHTML += `<option>${i}</option>`       
+            }
+        }
+        const insertarTablasDesdeX = () => {
+            const numero = document.getElementById("cajaTexto").value  
+            for (let i = 0; i < numero; i++) {
+                tablaGeneral(i+1)
+            }
+        }
+        const mostrarTabla = () => {
+            let numeroElegido = document.getElementById("desplegable").value
+            tablaGeneral(numeroElegido)
+        }
+        const tablaGeneral = (numero) => {
+            const tabla = document.createElement("p")
+            tabla.id = "tabla"
+            tabla.innerHTML = `<p>1 * ${numero} = ${numero*1}</p>
+                                <p>2 * ${numero} = ${numero*2}</p>
+                                <p>3 * ${numero} = ${numero*3}</p>
+                                <p>4 * ${numero} = ${numero*4}</p>
+                                <p>5 * ${numero} = ${numero*5}</p>
+                                <p>6 * ${numero} = ${numero*6}</p>
+                                <p>7 * ${numero} = ${numero*7}</p>
+                                <p>8 * ${numero} = ${numero*8}</p>
+                                <p>9 * ${numero} = ${numero*9}</p>
+                                <p>10 * ${numero} = ${numero*10}</p>`
+
+            document.body.appendChild(tabla);
+                                
+        }
+        generarDesplegable();
+
+        let primeraVez = 0;
+        document.getElementById("desplegable").addEventListener("click", () => {
+            if (primeraVez === 0){
+                mostrarTabla()
+                primeraVez += 1;
+            }
+            else{ //te elimina la tabla
+                document.getElementById("tabla").remove()
+                mostrarTabla()
+            }
+            
+        })
+
+        let botonTodos = document.getElementById("insertarTablas");
+    
+        botonTodos.addEventListener("click", insertarTablasDesdeX);
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4 del examen</title>
+</head>
+<body>
+    Buscar: <input type="text" id="cajaTexto">
+    <input type="button" value="Buscar" id="btBuscar">
+
+    <script>
+        /*
+        METODO QUE BUSCA UNA RECETA Y TE DEVUELVE LA RECETA CON EL NOMBRE DE LOS 
+        INGREDIENTES Y ADEMAS CON LA CANTIDAD
+        */
+        const buscarComidaIngredientes = async (texto) => {
+            try {
+                
+                const responseRecetas = await fetch('http://localhost:3000/recetas');
+                const recetas = await responseRecetas.json();
+                console.log(recetas);
+                console.log(texto);
+                
+                
+                for (const receta of recetas) {
+                    if (receta.nombre === texto){
+                        let nombre = document.createElement("h2");
+                        nombre.innerText = receta.nombre;
+                        console.log(receta.nombre);
+                        
+                        
+                        let descripcion = document.createElement("p");
+                        descripcion.innerText = receta.descripcion;
+    
+                        let precio = document.createElement("p");
+                        precio.innerText = receta.precio;
+    
+                        document.body.appendChild(nombre);
+                        document.body.appendChild(descripcion)
+                        document.body.appendChild(precio)
+                        
+                        
+                        
+
+                        
+                        
+                        for (let ingrediente of receta.ingredientes) {
+                            console.log(ingrediente);
+
+                            let cantidadIngrediente = document.createElement("p");
+                            cantidadIngrediente.innerText = ingrediente.cantidad;
+
+                            const responseIngrediente = await fetch(`http://localhost:3000/ingredientes/${ingrediente.ingredienteId}`)
+                            const jsonIngrediente = await responseIngrediente.json();
+                           
+                            let nombreIngrediente = document.createElement("p");
+                            nombreIngrediente.innerText = jsonIngrediente.nombre;
+                            
+                            
+                            document.body.appendChild(nombreIngrediente)
+                            document.body.appendChild(cantidadIngrediente)
+                            
+                        }
+                        return true;
+                        
+                        
+                    }
+                    else{
+                        return false;
+                    }
+                    
+                    
+                }
+            } catch (error) {
+                console.log("Error", error);
+            }
+            return false;
+            
+        }
+
+        /*Primer metodo del ejercicio mas sencillo*/
+        const buscarReceta = async (texto) => {
+            try {
+                
+                const responseRecetas = await fetch('http://localhost:3000/recetas');
+                const recetas = await responseRecetas.json();
+                console.log(recetas);
+                console.log(texto);
+                
+                
+                for (const receta of recetas) {
+                    if (receta.nombre == texto){
+
+
+                        let nombre = document.createElement("h2");
+                        nombre.innerText = receta.nombre;
+                        console.log(receta.nombre);
+                        
+                        let descripcion = document.createElement("p");
+                        descripcion.innerText = receta.descripcion;
+    
+                        let precio = document.createElement("p");
+                        precio.innerText = receta.precio;
+    
+                        document.body.appendChild(nombre);
+                        document.body.appendChild(descripcion)
+                        document.body.appendChild(precio)
+                        
+                    }
+                    
+                }
+            } catch (error) {
+                console.log("Error", error);
+            }
+        }
+        
+        /*
+        const buscador = () => {
+            console.log("Estoy dentro del buscador");
+            const texto = document.getElementById("cajaTexto").value;
+            buscarReceta(texto);
+        }*/
+       /*
+               const boton = document.getElementById("btBuscar");
+               boton.addEventListener("click", buscador)
+       */
+
+        const buscadorDos = () => {
+            console.log("Estoy dentro del ingredientes");
+            const texto = document.getElementById("cajaTexto").value;
+            buscarComidaIngredientes(texto).then((respuesta) => {
+                if (respuesta){
+                    console.log("Todo correctamente");
+                }
+                else {
+                    console.log("un errorcillo");
+                    let mensajeError = document.createElement("h1");
+                    mensajeError.innerText = "NO SE ENCONTRO NINGUNA RECETAa"
+                    document.body.appendChild(mensajeError)
+
+                }
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+                
+                
+            
+
+            
+        }
+
+        const boton = document.getElementById("btBuscar");
+        boton.addEventListener("click", buscadorDos)
+
+    </script>
+    
+</body>
+</html>
