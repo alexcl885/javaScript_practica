@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de MEMES</title>
+</head>
+<body>
+    <script>
+        const mostrarMemes = async () => {
+            const data = await fetch("https://api.imgflip.com/get_memes");
+            const memes = await data.json();
+
+            console.log(memes.data.memes); //aqui tengo todos los memes
+            for (meme of memes.data.memes){
+                console.log(meme);
+
+                const nombre = document.createElement("h2");
+                nombre.innerText = `${meme.name}`
+                const imagen = document.createElement("img");
+                imagen.src = `${meme.url}`
+                
+                //para poner estilos
+                imagen.style.height = `${meme.height}px`
+                imagen.style.width = `${meme.width}px`
+
+                document.body.appendChild(nombre)
+                document.body.appendChild(imagen)
+            }
+
+        }   
+        mostrarMemes();
+    </script>
+</body>
+</html>

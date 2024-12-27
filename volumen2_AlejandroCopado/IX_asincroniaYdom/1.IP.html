@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Asincronia y DOM</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+    <!--Con ayuda del chatgpt le he metido boostrap al ejercicio para que se vea mucho mejor-->
+    <p>Buscar:</p>
+    <input type="text" name="caja_texto" id="cajaTexto">
+    <input type="button" value="Buscar" id="buscar">
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Información del Usuario</h1>
+
+        <div id="informacion" class="border rounded p-4 bg-white shadow">
+            <p class="text-secondary">Cargando información...</p>
+        </div>
+
+        <div class="mt-4 text-center">
+            <h2 class="h5 mb-3">Ubicación</h2>
+            <iframe
+                class="border rounded shadow"
+                width="100%"
+                height="400"
+                frameborder="0"
+                scrolling="no"
+                marginheight="0"informacion
+                marginwidth="0"
+                src="">
+            </iframe>
+        </div>
+    </div>
+
+    <script>
+        const informacion = document.getElementById("informacion");
+        const iframe = document.querySelector("iframe");
+
+        /* metodo para consultar el IP del dispositivo del usuario */
+        const consultarIp = async () => {
+            const data = await fetch('https://api.ipify.org/?format=json');
+            const ip = await data.json();
+            const addIp = document.createElement("p");
+            addIp.innerText = `Mi IP es => ${ip.ip}`;
+            
+            informacion.appendChild(addIp);
+            return ip;
+        };
+        
+
+        /*metodo que realiza e introduce en el DOM los datos del dispositvo */
+        const datosUsuario = async (afirmacion, valorIp) => {
+            const ipUser = await fetch('https://api.ipify.org/?format=json');
+            const ip = await ipUser.json();
+            
+            if (afirmacion == true){
+                const datosUser = await fetch(`http://ip-api.com/json/${ip.ip}?fields=66842623&lang=es`);
+                const infUser = await datosUser.json();
+                const addIp = document.createElement("p");
+                addIp.innerText = `IP  => ${ip.ip}`;
+
+                introducirInformacion(infUser,addIp)
+
+            }
+            else {
+                const datosUser = await fetch(`http://ip-api.com/json/${valorIp}?fields=66842623&lang=es`);
+                const infUser = await datosUser.json();
+                const addIp = document.createElement("p");
+                addIp.innerText = `IP  => ${valorIp}`;
+
+                introducirInformacion(infUser, addIp)
+
+            }
+
+        };
+
+        const introducirInformacion = (infUser, addIp) => {
+            /*país,region,ciudad,codPostal,proveedorInternet */
+            const pais = document.createElement("p");
+            pais.innerHTML = `<strong>País:</strong> ${infUser.country}`;
+
+            const region = document.createElement("p");
+            region.innerHTML = `<strong>Región:</strong> ${infUser.regionName}`;
+
+            const ciudad = document.createElement("p");
+            ciudad.innerHTML = `<strong>Ciudad:</strong> ${infUser.city}`;
+
+            const codPostal = document.createElement("p");
+            codPostal.innerHTML = `<strong>Código Postal:</strong> ${infUser.zip}`;
+
+            const proveedorInternet = document.createElement("p");
+            proveedorInternet.innerHTML = `<strong>Proveedor de Internet:</strong> ${infUser.isp}`;
+
+            informacion.innerHTML = ""; 
+            informacion.appendChild(addIp);
+            informacion.appendChild(pais);
+            informacion.appendChild(region);
+            informacion.appendChild(ciudad);
+            informacion.appendChild(codPostal);
+            informacion.appendChild(proveedorInternet);
+
+            //localizo al usuario
+            iframe.src = `https://maps.google.com/maps?q=${infUser.lat},${infUser.lon}&hl=es&z=14&output=embed`;
+        }
+        
+        /*
+        En este caso si el buscador esta vacio mostrara todos los datos de su dispositivo
+        y si esta con texto buscara la informacion de esa Ip especifica y se mostrara
+        */
+        const valorarBoton = document.getElementById("buscar");
+        valorarBoton.addEventListener("click", () => {
+            const texto = document.getElementById("cajaTexto").value;
+            if (texto == ""){
+                datosUsuario(true, " ")
+            }
+            else{
+                datosUsuario(false, texto )
+            }
+        })
+    </script>
+</body>
+</html>
