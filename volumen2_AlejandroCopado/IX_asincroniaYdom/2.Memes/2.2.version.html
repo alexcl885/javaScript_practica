@@ -4,8 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejercicio de MEMES</title>
+    <style>
+        .meme-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /*para que puedan estar en 4 columnas */
+            gap: 10px; /* dejo espacio */
+            padding: 20px;
+        }
+        .meme-item img {
+            max-width: 100%; 
+            height: auto; 
+        }
+    </style>
 </head>
 <body>
+
+    <div class="meme-container" id="memeContainer"></div>
+
+    <script>
+        const mostrarMemes = async () => {
+            const data = await fetch("https://api.imgflip.com/get_memes");
+            const memes = await data.json();
+
+            console.log(memes.data.memes); //aqui tengo todos los memes
+
+            const memeContainer = document.getElementById("memeContainer");
+
+            for (meme of memes.data.memes) {
+                console.log(meme);
+
+                const memeItem = document.createElement("div");
+                memeItem.classList.add("meme-item");
+
+                const nombre = document.createElement("h2");
+                nombre.innerText = `${meme.name}`;
+                const imagen = document.createElement("img");
+                imagen.src = `${meme.url}`;
+
+                memeItem.appendChild(nombre);
+                memeItem.appendChild(imagen);
+
+                memeContainer.appendChild(memeItem);
+            }
+        };       
+        mostrarMemes();
+    </script>
     
 </body>
 </html>

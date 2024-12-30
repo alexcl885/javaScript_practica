@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de Perros</title>
+    <style>
+        img{
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+<body>
+    <!--BOTONES-->
+    <div style="margin-left: 600px;">
+        <label for="rbPrimero">2</label>
+        <input type="radio" name="radioButton" id="rbPrimero" value="2">
+    
+        <label for="rbSegundo">4</label>
+        <input type="radio" name="radioButton" id="rbSegundo" value="4">
+    
+        <label for="rbTercero">6</label>
+        <input type="radio" name="radioButton" id="rbTercero" value="6">
+    
+        <label for="rbCuarto">8</label>
+        <input type="radio" name="radioButton" id="rbCuarto" value="8">
+
+    </div>
+    <h3>Perros:</h3>
+    <div id="dogs" style="border: 1px solid black;">
+
+    </div>
+    <script>
+        
+        const mostrarPerros = async (numero = 2) => {
+            for (let i =0 ; i < numero; i++){
+                const data = await fetch("https://dog.ceo/api/breeds/image/random");
+                const perro = await data.json();
+        
+                const imagenPerro = document.createElement("img");
+
+                imagenPerro.src = `${perro.message}`;
+
+                dogs.appendChild(imagenPerro);
+                
+                
+                
+            }
+        }    
+        
+        const boton = document.getElementsByName("radioButton");
+        boton.forEach((boton) => {
+            const numero = boton.value
+            boton.addEventListener("click", () => {
+                document.querySelectorAll("img").forEach(img => img.remove());
+                const numero = parseInt(boton.value); //cojo el numero del value del input
+                mostrarPerros(numero);
+            });
+        })
+
+    </script>
+    
+</body>
+</html>

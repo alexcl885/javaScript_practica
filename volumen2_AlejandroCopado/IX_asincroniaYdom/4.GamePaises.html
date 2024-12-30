@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego averiguar paises</title>
+  </head>
+  <body>
+    <div id="banderas"></div>
+    <script>
+
+        const paises = [
+            {
+                code: "ES",
+                country: "España",
+            },
+            {
+                code: "FR",
+                country: "Francia",
+            },
+            {
+                code: "US",
+                country: "Estados Unidos",
+            },
+            {
+                code: "DE",
+                country: "Alemania",
+            },
+            {
+                code: "IT",
+                country: "Italia",
+            },
+            {
+                code: "JP",
+                country: "Japón",
+            },
+            {
+                code: "GB",
+                country: "Reino Unido",
+            },
+            {
+                code: "CN",
+                country: "China",
+            },
+            {
+                code: "BR",
+                country: "Brasil",
+            },
+            {
+                code: "IN",
+                country: "India",
+            },
+            {
+                code: "MX",
+                country: "México",
+            },
+            {
+                code: "CA",
+                country: "Canadá",
+            },
+            {
+                code: "AR",
+                country: "Argentina",
+            },
+            {
+                code: "AU",
+                country: "Australia",
+            },
+            {
+                code: "ZA",
+                country: "Sudáfrica",
+            },
+        ];
+
+        const paisRandom = (datos) => {
+            let numRandom = Math.floor(Math.random()*datos.length);
+            let paisRandom = datos[numRandom]
+            let nombre = paisRandom.code;
+
+            return nombre; 
+        }
+
+        const mostrarBandera = (datos) => {
+            const contenedor = document.getElementById("banderas");
+            
+            for (let i = 0; i < 4; i++) {
+                
+            const pais = paisRandom(datos);
+            console.log(pais);
+
+            const imagen = document.createElement("img");
+            imagen.src = `https://flagsapi.com/${pais}/flat/64.png`;
+            
+            imagen.style.margin = "20px";
+
+            contenedor.appendChild(imagen);
+            }
+        };
+        mostrarBandera(paises);
+
+
+    </script>
+  </body>
+</html>
