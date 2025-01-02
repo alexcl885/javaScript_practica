@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de los pokemones</title>
+</head>
+<body>
+    <h1 style="margin-left: 550px;">CONSULTOR API POKEMON</h1>
+    <div id="container"></div>
+    <script>
+        const consultarPokemones = async () => {
+            const dataPokemones = await fetch('https://pokeapi.co/api/v2/pokemon/');
+            const pokemones = await dataPokemones.json();
+            const div = document.getElementById("container");
+
+            console.log(pokemones.results);
+            for (let pokemon of pokemones.results){
+                
+                let urlPokemon = pokemon.url; //url con la informacion del pokemon
+                const dataPokemon = await fetch(`${urlPokemon}`) //url con mas detalle del pokemon
+                const poke = await dataPokemon.json();
+                //nombre
+                const nombrePokemon = document.createElement("h2");
+                nombrePokemon.innerText = poke.name;
+                div.appendChild(nombrePokemon);
+                //habilidades
+                const habilidades = poke.abilities
+                for (let habilidad of habilidades){
+                    let hability = document.createElement("p")
+                    hability.innerHTML = `<strong> Habilidad: </strong> ${habilidad.ability.name} <br>`;
+                    div.appendChild(hability)
+                }
+                //imagen normal
+                let imagen = document.createElement("img");
+                imagen.src = `${poke.sprites.front_default}`;
+                div.appendChild(imagen)
+                //imagen shiny
+                let imagenShyni = document.createElement("img");
+                imagenShyni.src = `${poke.sprites.front_shiny}`;
+                div.appendChild(imagenShyni)
+
+                //peso
+                let pesoPokemon = document.createElement("p")
+                pesoPokemon.innerHTML = `<strong>Peso</strong> ${poke.weight} kg`
+                div.appendChild(pesoPokemon)
+     
+            }
+            
+        }
+        consultarPokemones()
+    </script>
+    
+</body>
+</html>
