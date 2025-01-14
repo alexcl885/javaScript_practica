@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio de los pokemones</title>
+    <link rel="stylesheet" href="5.Pokemon.css">
+</head>
+<body>
+    <h1 class="title">CONSULTOR API POKEMON</h1>
+    <div id="container"></div>
+    <script>
+        const consultarPokemones = async () => {
+            const dataPokemones = await fetch('https://pokeapi.co/api/v2/pokemon/');
+            const pokemones = await dataPokemones.json();
+            const div = document.getElementById("container");
+
+            console.log(pokemones.results);
+            for (let pokemon of pokemones.results) {
+                let urlPokemon = pokemon.url; // URL con la información del Pokémon
+                const dataPokemon = await fetch(`${urlPokemon}`); // URL con más detalle del Pokémon
+                const poke = await dataPokemon.json();
+
+                // Nombre
+                const nombrePokemon = document.createElement("h2");
+                nombrePokemon.className = "pokemon-name";
+                nombrePokemon.innerText = poke.name;
+                div.appendChild(nombrePokemon);
+
+                // Habilidades
+                const habilidades = poke.abilities;
+                for (let habilidad of habilidades) {
+                    let hability = document.createElement("p");
+                    hability.className = "pokemon-ability";
+                    hability.innerHTML = `<strong>Habilidad:</strong> ${habilidad.ability.name} <br>`;
+                    div.appendChild(hability);
+                }
+
+                // Imagen normal
+                let imagen = document.createElement("img");
+                imagen.className = "pokemon-image";
+                imagen.src = `${poke.sprites.front_default}`;
+                div.appendChild(imagen);
+
+                // Imagen shiny
+                let imagenShyni = document.createElement("img");
+                imagenShyni.className = "pokemon-image shiny";
+                imagenShyni.src = `${poke.sprites.front_shiny}`;
+                div.appendChild(imagenShyni);
+
+                // Peso
+                let pesoPokemon = document.createElement("p");
+                pesoPokemon.className = "pokemon-weight";
+                pesoPokemon.innerHTML = `<strong>Peso:</strong> ${poke.weight} kg`;
+                div.appendChild(pesoPokemon);
+            }
+        };
+
+        consultarPokemones();
+    </script>
+</body>
+</html>
